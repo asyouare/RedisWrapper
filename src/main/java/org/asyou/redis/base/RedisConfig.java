@@ -8,6 +8,11 @@ import java.io.Serializable;
  * Created by steven on 17/5/4.
  */
 public class RedisConfig implements Cloneable,Serializable {
+
+    public static RedisConfig build(){
+        return new RedisConfig();
+    }
+
     private String id;
     private String hostName;
     private Integer port;
@@ -18,6 +23,7 @@ public class RedisConfig implements Cloneable,Serializable {
     private JedisPoolConfig jedisPoolConfig;
 
     public RedisConfig(){
+        this.jedisPoolConfig = createJedisPoolConfig();
     }
 
     public RedisConfig(String id,
@@ -59,45 +65,53 @@ public class RedisConfig implements Cloneable,Serializable {
         return id;
     }
 
-    public void setId(String id){
+    public RedisConfig setId(String id){
         this.id = id;
+        return this;
     }
 
     public String getHostName() {
         return hostName;
     }
 
-    public void setHostName(String hostname) {
+    public RedisConfig setHostName(String hostname) {
         this.hostName = hostname;
+        return this;
     }
 
     public Integer getPort() {
         return port;
     }
 
-    public void setPort(Integer port) {
+    public RedisConfig setPort(Integer port) {
         this.port = port;
+        return this;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String username) {
+    public RedisConfig setUserName(String username) {
         this.userName = username;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public RedisConfig setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public JedisPoolConfig getJedisPoolConfig(){ return this.jedisPoolConfig; }
 
-    public void setJedisPoolConfig(JedisPoolConfig value){ this.jedisPoolConfig = value; }
+    public RedisConfig setJedisPoolConfig(JedisPoolConfig value){
+        this.jedisPoolConfig = value;
+        return this;
+    }
 
 
     /**

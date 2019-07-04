@@ -1,3 +1,4 @@
+import org.asyou.redis.base.RedisConfig;
 import org.asyou.redis.base.RedisManager;
 import org.asyou.redis.dao.IRedisAdapter;
 import org.asyou.redis.dao.RedisAdapter;
@@ -19,7 +20,8 @@ public class TestLock {
     public static IRedisAdapter adapter;
     @Before
     public void Init_before() throws Exception {
-        RedisManager.putRedisConfig(new CacheConfig());
+        RedisConfig config = RedisConfig.build().build().setId("tuhao-cache").setHostName("47.93.160.185").setPort(6379);
+        RedisManager.putRedisConfig(config);
         adapter = new RedisAdapter("tuhao-cache");
         atomicInteger = new AtomicInteger(Integer.parseInt(adapter.get("a")));
     }

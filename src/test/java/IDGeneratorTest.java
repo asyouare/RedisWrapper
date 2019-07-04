@@ -1,3 +1,4 @@
+import org.asyou.redis.base.RedisConfig;
 import org.asyou.redis.base.RedisManager;
 import org.asyou.redis.dao.IRedisAdapter;
 import org.asyou.redis.dao.RedisAdapter;
@@ -23,8 +24,8 @@ public class IDGeneratorTest {
     public void testV1_0() throws Exception {
 
 //        SocketAddress addr = new InetSocketAddress("localhost", 9091);
-
-        RedisManager.putRedisConfig(new CacheConfig());
+        RedisConfig config = RedisConfig.build().build().setId("tuhao-cache").setHostName("47.93.160.185").setPort(6379);
+        RedisManager.putRedisConfig(config);
 
         IRedisAdapter timeAdapter = new RedisAdapter("tuhao-cache");
         ITimeClient timeClient = new LocalTimeClient();
